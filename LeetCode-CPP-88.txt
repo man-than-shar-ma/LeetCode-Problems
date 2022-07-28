@@ -1,0 +1,44 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+//         vector<int> nums;
+//         int n1p = 0;
+//         int n2p = 0;
+        
+//         while(n1p < nums1.size()-nums2.size() && n2p < nums2.size()){
+//             if(nums1[n1p]<nums2[n2p]){
+//                 nums.push_back(nums1[n1p++]);
+//             }
+//             else{
+//                 nums.push_back(nums2[n2p++]);
+//             }
+//         }
+        
+//         while(n1p < nums1.size()-nums2.size()){
+//             nums.push_back(nums1[n1p++]);
+//         }
+//         while(n2p < nums2.size()){
+//             nums.push_back(nums2[n2p++]);
+//         }
+        
+//         nums1 = nums;
+        
+        int np = m+n-1;
+        int n1p = m-1;
+        int n2p = n-1;
+        
+        while(n2p >= 0){
+            if(n1p >= 0){
+                if(nums1[n1p] > nums2[n2p]){
+                    nums1[np--] = nums1[n1p--];
+                }
+                else{
+                    nums1[np--] = nums2[n2p--];
+                }
+            }
+            else{
+                nums1[np--] = nums2[n2p--];
+            }
+        }
+    }
+};
