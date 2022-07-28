@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+//         unordered_map<int,int> map1;
+//         for(int i=0; i< nums1.size(); i++){
+//             if(map1.count(nums1[i])){
+//                 map1[nums1[i]] += 1;
+//             }
+//             else{
+//                 map1[nums1[i]] = 1;
+//             }
+//         }
+        
+//         vector<int> fnarr;
+//         for(int i=0; i< nums2.size(); i++){
+//             if(map1.count(nums2[i]) && map1[nums2[i]] > 0){
+//                 fnarr.push_back(nums2[i]);
+//                 map1[nums2[i]] -= 1;
+//             }
+//         }
+//         return fnarr;
+        
+        unordered_map<int,int> map1;
+        for(int i=0; i< nums1.size(); i++){
+            map1[nums1[i]] += 1;
+        }
+        vector<int> fnarr;
+        for(int i=0; i< nums2.size(); i++){
+            if(map1[nums2[i]] > 0){
+                fnarr.push_back(nums2[i]);
+                map1[nums2[i]] -= 1;
+            }
+        }
+        return fnarr;
+        
+    }
+};
