@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        unordered_map <string,int> loc;
+        int sub = 0;
+        int m=0;
+        int n=0;
+        int i=0;
+        for(m=0;m<9;m++){
+            sub = floor(m/3)*3;
+            i=0;
+            for(n=0;n<9;n++){
+                if(i==3){
+                    i=0;
+                    sub++;
+                }
+                i++;
+                cout<<m<<n<<sub<<endl;
+                if(board[m][n]=='.') continue;
+                if(++loc["r"+to_string(board[m][n])+to_string(m)] > 1) return 0;
+                if(++loc["c"+to_string(board[m][n])+to_string(n)] > 1) return 0;
+                if(++loc["sub"+to_string(board[m][n])+to_string(sub)] > 1) return 0;
+            }
+        }
+        return 1;
+    }
+};
