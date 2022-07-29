@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int m=matrix.size();
+        int n=matrix[0].size();
+        
+        int beg_r=0;
+        int end_r=m-1;
+        while(beg_r<=end_r){
+            int mid_r = beg_r + (end_r-beg_r)/2;
+            if(matrix[mid_r][0]<=target && matrix[mid_r][n-1] >= target){
+                int beg_c = 0;
+                int end_c = n-1;
+                while(beg_c <= end_c){
+                    int mid_c = beg_c + (end_c-beg_c)/2;
+                    if(matrix[mid_r][mid_c] == target) return true;
+                    else if(matrix[mid_r][mid_c] > target)
+                        end_c = mid_c - 1;
+                    else if(matrix[mid_r][mid_c] < target)
+                        beg_c = mid_c + 1;
+                }
+                return false;
+            }
+            else if(matrix[mid_r][0]>target)
+                end_r = mid_r - 1;
+            else if(matrix[mid_r][n-1]<target)
+                beg_r = mid_r + 1;            
+        }
+        return false;
+    }
+};
