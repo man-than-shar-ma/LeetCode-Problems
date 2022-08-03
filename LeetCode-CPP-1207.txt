@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        map<int, int> themap;
+        set<int> theset;
+        int ans = 0;
+        for(int i=0; i< arr.size(); i++)
+            themap[arr[i]]++;
+        for(auto i=themap.begin(); i!= themap.end(); i++)
+            theset.insert((*i).second);
+        return themap.size() == theset.size();
+    }
+};
