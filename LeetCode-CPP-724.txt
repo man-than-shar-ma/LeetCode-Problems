@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int sum=0;
+        sum = accumulate(nums.begin()+1,nums.end(),sum);
+        int lsum=0;
+        int i=0;
+        while(i!=nums.size()){
+            if(lsum==sum){
+                return i;
+            }
+            lsum += nums[i];
+            sum -= nums[i+1];
+            i++;
+        }
+
+        return -1;
+        
+    }
+};
