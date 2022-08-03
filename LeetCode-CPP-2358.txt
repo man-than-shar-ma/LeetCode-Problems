@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maximumGroups(vector<int>& grades) {
+        sort(grades.begin(),grades.end());
+        int counter = 0, agc = 1, gc = 0;
+        for(int i=0;i<grades.size();i++){
+            gc++;
+            if(gc == agc){
+                agc++;
+                gc = 0;
+                counter++;
+            }
+        }
+        return counter;
+    }
+};
