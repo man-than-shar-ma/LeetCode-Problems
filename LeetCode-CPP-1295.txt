@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int findNumbers(vector<int>& nums) {
+        int count = 0;
+        int d,tnum;
+        for(int num : nums){
+            d = 1;
+            tnum = 0;
+            do{
+                tnum = num/d;
+                d *= 100;
+            }
+            while(tnum>=10);
+            if(!tnum)
+                count++;
+        }
+        return count;
+    } 
+};
