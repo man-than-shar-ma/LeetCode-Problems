@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+//         method 1
+//         int minIndex,minsize;
+//         bool iszero = false;
+//         int minSub = 0;
+//         while(!iszero){
+//             minsize = INT_MAX;
+//             iszero = true;
+//             for(int i=0;i<nums.size();i++){
+//                 if(nums[i]<minsize && nums[i] != 0){
+//                     minsize = nums[i];
+//                     minIndex = i;
+//                 }
+//                 if(nums[i]!=0)
+//                     iszero = false;
+            
+//             }
+//             if(iszero)
+//                 return minSub;
+//             for(int i=0;i<nums.size();i++){
+//                 if(nums[i]!=0)
+//                     nums[i] = nums[i] - minsize;
+//             }
+//             minSub++;
+//         }
+        
+//         return minSub;
+        
+        // method 2
+        set<int> mset;
+        for(int num : nums)
+            if(num!=0)
+                mset.insert(num);
+        return mset.size();
+            
+    }
+};
