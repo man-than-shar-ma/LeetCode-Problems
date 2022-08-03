@@ -1,0 +1,40 @@
+class Solution {
+public:
+    void duplicateZeros(vector<int>& arr) {
+//         method 1
+//         int count = 0;
+//         int size = arr.size();
+//         vector<int> newarr;
+//         for(int item : arr){
+//             newarr.push_back(item);
+//             count++;
+//             if(item==0){
+//                 newarr.push_back(item);
+//                 count++;
+//             }
+//             if(count == size)
+//                 break;
+//             else if(count == size+1){
+//                 newarr.pop_back();
+//                 break;
+//             }
+//         }
+        
+        // method 2
+        int count = 0;
+        int size = arr.size();
+        for(int i=0; i<size; i++){
+            if(count==size)
+                break;
+            arr.push_back(arr[i]);
+            count++;
+            
+            if(arr[i]==0 && count!=size){
+                arr.push_back(arr[i]);
+                count++;
+            }
+        }
+        for(int i=0; i<size; i++)
+            arr.erase(arr.begin());
+    }
+};
