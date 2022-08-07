@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        int aPtr = a.size()-1;
+        int bPtr = b.size()-1;
+        string result = "";
+        int sum = 0;
+        while(aPtr>=0 && bPtr>=0){
+            sum += (a[aPtr--]-'0') + (b[bPtr--]-'0');
+            result = to_string(sum%2) + result;
+            sum /= 2;
+        }
+        while(aPtr>=0){
+            sum += (a[aPtr--]-'0');
+            result = to_string(sum%2) + result;
+            sum /= 2;
+        }
+        while(bPtr>=0){
+            sum += (b[bPtr--]-'0');
+            result = to_string(sum%2) + result;
+            sum /= 2;
+        }
+        if(sum==1)
+            result = to_string(sum) + result;
+        return result;
+    }
+};
