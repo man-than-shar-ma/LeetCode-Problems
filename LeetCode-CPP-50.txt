@@ -1,0 +1,22 @@
+class Solution {
+public:
+    double myPow(double x, int n) {
+        long long ln = n;
+        if(n<0)
+            ln = -1LL * n;
+        double result = 1;
+        while(ln != 0){
+            if(ln%2==0){
+                x *= x;
+                ln /= 2;
+            }
+            else{
+                result *= x;
+                ln--;
+            }
+        }
+        if(n<0)
+            result = (double)1/result;
+        return result;
+    }
+};
