@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        int majorityElement1 = 0;
+        int majorityElement2 = 0;
+        int count1 = 0;
+        int count2 = 0;
+        for(int i : nums){
+            if(i == majorityElement1)
+                count1++;
+            else if(i == majorityElement2)
+                count2++;
+            else if(count1 == 0){
+                majorityElement1 = i;
+                count1++;
+            } 
+            else if(count2 == 0){
+                majorityElement2 = i;
+                count2++;
+            }        
+            else{
+                count1--;
+                count2--;
+            }    
+        }
+
+        count1 = 0;
+        count2 = 0;
+        for(int i : nums){
+            if(i == majorityElement1)
+                count1++;
+            else if(i == majorityElement2)
+                count2++;
+        }
+        vector<int> v;
+        if(count1 > nums.size()/3)
+            v.push_back(majorityElement1);
+        if(count2 > nums.size()/3)
+            v.push_back(majorityElement2);
+        return v;
+    }
+};
