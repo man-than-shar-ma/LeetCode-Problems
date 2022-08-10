@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int count(int m, int n, int i, int j){
+        if(i == m-1 && j == n-1)
+            return 1;
+        if(i>=m || j >= n)
+            return 0;
+        return count(m,n,i+1,j) + count(m,n,i,j+1);
+        
+    }
+    
+    int uniquePaths(int m, int n) {
+        //recursive approach (TLE)
+        // return count(m,n,0,0);
+        
+        //combinations
+        int N = m+n-2;
+        int R = min(m-1,n-1);
+        double res = 1;
+        for(int i=1; i<=R; i++)
+            res *= (double)N--/(double)i;
+        return round(res);
+    }
+};
