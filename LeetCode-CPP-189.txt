@@ -1,0 +1,50 @@
+class Solution {
+public:
+    // void rotate(vector<int>& nums, int k) {
+    //     // k = k % nums.size();
+
+    //     // if(k==0) return;
+        
+    //     // int pivot = nums.size() - k;
+    //     // int leftPart = 0;
+    //     // int rightPart = nums.size() - k;
+    //     // vector<int> result;
+    //     // while(rightPart < nums.size()){
+    //     //     result.push_back(nums[rightPart++]);
+    //     // }
+    //     // while(leftPart<pivot){
+    //     //     result.push_back(nums[leftPart++]);
+    //     // }
+    //     // nums = result;
+    //     // return;
+
+    //     // -----------------------------
+
+    //     // k = k % nums.size();
+
+    //     // if(k==0) return;
+        
+    //     // int pivot = nums.size() - k;
+    //     // for(int i=0; i<pivot; i++){
+    //     //     nums.push_back(nums[i]);
+    //     // }
+    //     // nums.erase(nums.begin(),nums.begin()+pivot);
+
+    //     // ----------------------------------
+    // }
+
+    void reverse(vector<int>& nums, int start, int end){
+        while( start <= end){
+            swap(nums[start], nums[end]);
+            start++;
+            end--;
+        }
+    }
+    void rotate(vector<int>& nums, int k){   
+        int n = nums.size();
+        k = k%n;
+        reverse(nums, 0, n-1);
+        reverse(nums, 0, k-1);
+        reverse(nums, k, n-1);
+    }
+};
