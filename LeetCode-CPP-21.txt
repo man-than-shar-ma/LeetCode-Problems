@@ -11,34 +11,79 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode* actHead = list1;
-        ListNode* prevList1;
-        cout<<prevList1;
-        while(list2!= NULL){
-            if(list1 == NULL){
-                if(list1 == actHead) return list2;
-                prevList1->next = list2;
-                break;
-            }
-            else if(list1->val <= list2->val){
-                prevList1 = list1;
+
+        // ListNode* actHead = list1;
+        // ListNode* prevList1;
+        // cout<<prevList1;
+        // while(list2!= NULL){
+        //     if(list1 == NULL){
+        //         if(list1 == actHead) return list2;
+        //         prevList1->next = list2;
+        //         break;
+        //     }
+        //     else if(list1->val <= list2->val){
+        //         prevList1 = list1;
+        //         list1 = list1->next;
+        //     }
+        //     else{
+        //         if(list1 == actHead){
+        //             prevList1 = list2;
+        //             list2 = list2->next;
+        //             prevList1->next = list1;
+        //             actHead = prevList1;
+        //         }
+        //         else{
+        //             prevList1->next = list2;
+        //             list2 = list2->next;
+        //             (prevList1->next)->next = list1;
+        //             prevList1 = prevList1->next;
+        //         }
+        //     }
+        // }
+        // return actHead;
+
+        ListNode* ls = NULL;
+        ListNode* currNode = NULL;
+        ListNode* templs = NULL;
+
+        while(list1 != NULL && list2 != NULL){
+            if(list1->val <= list2->val){
+                templs = list1;
                 list1 = list1->next;
-            }
-            else{
-                if(list1 == actHead){
-                    prevList1 = list2;
-                    list2 = list2->next;
-                    prevList1->next = list1;
-                    actHead = prevList1;
+                if(ls == NULL){
+                    ls = templs;
+                    currNode = ls;
                 }
                 else{
-                    prevList1->next = list2;
-                    list2 = list2->next;
-                    (prevList1->next)->next = list1;
-                    prevList1 = prevList1->next;
+                    currNode->next = templs;
+                    currNode = currNode->next;
+                }
+            }
+            else{
+                templs = list2;
+                list2 = list2->next;
+                if(ls == NULL){
+                    ls = templs;
+                    currNode = ls;
+                }
+                else{
+                    currNode->next = templs;
+                    currNode = currNode->next;
                 }
             }
         }
-        return actHead;
+
+        if(list1 != NULL)
+            if(ls == NULL)
+                ls = list1;
+            else
+                currNode->next = list1;
+        if(list2 != NULL)
+            if(ls == NULL)
+                ls = list2;
+            else
+                currNode->next = list2;
+
+        return ls;
     }
 };
