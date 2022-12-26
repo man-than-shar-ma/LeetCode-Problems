@@ -1,11 +1,24 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
-        unordered_map<int,int> umap;
-        for(int i = 0; i<numbers.size(); i++){
-            if(umap.count(target - numbers[i]) > 0)
-                return {umap[target - numbers[i]]+1,i+1};
-            umap[numbers[i]] = i;
+        // unordered_map<int,int> umap;
+        // for(int i = 0; i<numbers.size(); i++){
+        //     if(umap.count(target - numbers[i]) > 0)
+        //         return {umap[target - numbers[i]]+1,i+1};
+        //     umap[numbers[i]] = i;
+        // }
+        // return (vector<int>){};
+
+        vector<int> result;
+        int start = 0;
+        int end = numbers.size()-1;
+        int total;
+        while (start<end) {
+            total = numbers[start] + numbers[end];
+            if (total == target)
+                return {start+1, end+1};
+            else if (total < target) start++;
+            else end--;
         }
         return (vector<int>){};
     }
