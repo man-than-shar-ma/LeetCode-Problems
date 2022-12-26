@@ -10,15 +10,35 @@
  */
 class Solution {
 public:
+
+    // iterative approach
+    // ListNode* reverseList(ListNode* head) {
+    //     ListNode* revHead = NULL;
+    //     ListNode* tempNode;
+    //     while(head!=NULL){
+    //         tempNode = head;
+    //         head = head->next;
+    //         tempNode->next = revHead;
+    //         revHead = tempNode;
+    //     }
+    //     return revHead;
+    // }
+
+    // Using Recursion
     ListNode* reverseList(ListNode* head) {
-        ListNode* revHead = NULL;
-        ListNode* tempNode;
-        while(head!=NULL){
-            tempNode = head;
-            head = head->next;
-            tempNode->next = revHead;
-            revHead = tempNode;
+        ListNode* revhead = NULL;
+        reverseListHelper(&head, &revhead);
+        return revhead;
+    }
+
+    ListNode* reverseListHelper(ListNode** currhead, ListNode** revhead){
+        if((*currhead) == NULL || (*currhead)->next == NULL){
+            (*revhead) = (*currhead);
+            return (*currhead);
         }
-        return revHead;
+        ListNode* reverse = reverseListHelper(&(*currhead)->next, &(*revhead));
+        (*currhead)->next = NULL;
+        reverse->next = (*currhead);
+        return *currhead;
     }
 };
