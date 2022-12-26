@@ -1,19 +1,44 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int lpr = 0, rpr = 1;
-        int maxProfit = 0;
-        while(rpr < prices.size()){
-            if(prices[lpr] < prices[rpr]){
-                if(prices[rpr] - prices[lpr] > maxProfit){
-                    maxProfit = prices[rpr] - prices[lpr];
-                }
-            }
-            else{
-                lpr = rpr;
-            }
-            rpr++;
+
+        // TLE
+        // int maxProfit = 0;
+        // for(int i=0 ; i< prices.size()-1; i++){
+        //     for(int j=i+1; j< prices.size() ; j++){
+        //         if(prices[j] - prices[i] > maxProfit){
+        //             maxProfit = prices[j] - prices[i];
+        //         }
+        //     }
+        // }
+        // return maxProfit;
+
+        // ------------------------------------------------
+        
+        // int lpr = 0, rpr = 1;
+        // int maxProfit = 0;
+        // while(rpr < prices.size()){
+        //     if(prices[lpr] < prices[rpr]){
+        //         if(prices[rpr] - prices[lpr] > maxProfit){
+        //             maxProfit = prices[rpr] - prices[lpr];
+        //         }
+        //     }
+        //     else{
+        //         lpr = rpr;
+        //     }
+        //     rpr++;
+        // }
+        // return maxProfit;
+
+        // ----------------------------------------------------
+
+        int lptr = 0;
+        int maxSum = 0;
+        for(int i=0; i<prices.size(); i++){
+            if(prices[i] < prices[lptr])
+                lptr = i;
+            maxSum = max(prices[i]-prices[lptr], maxSum);
         }
-        return maxProfit;
+        return maxSum;
     }
 };
