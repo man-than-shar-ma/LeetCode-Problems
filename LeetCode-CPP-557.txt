@@ -1,0 +1,18 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        string reversedString = "";
+        string temp = "";
+        for(char i : s){
+            if(i == ' '){
+                reversedString += temp + ' ';
+                temp = "";
+            }
+            else{
+                temp = i + temp;
+            }
+        }
+        reversedString += temp;
+        return reversedString;
+    }
+};
