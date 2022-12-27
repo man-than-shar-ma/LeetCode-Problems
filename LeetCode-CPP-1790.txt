@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool areAlmostEqual(string s1, string s2) {
+        int count = 0;
+        int firstindex = -1;
+        int secondindex = -1;
+        for(int i=0; i<s1.size(); i++){
+            if(s1[i] != s2[i]){
+                count++;
+                if(firstindex == -1) firstindex = i;
+                else if(secondindex == -1) secondindex = i;
+            }
+        }
+        if (count == 0 || count == 2 && s1[firstindex] == s2[secondindex] && s1[secondindex] == s2[firstindex]) return true;
+        else return false;
+
+    }
+};
