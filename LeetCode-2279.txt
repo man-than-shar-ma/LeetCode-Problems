@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int maximumBags(vector<int>& capacity, vector<int>& rocks, int additionalRocks) {
+        vector<int> remaining;
+        for(int i=0; i<rocks.size(); i++){
+            remaining.push_back(capacity[i] - rocks[i]);
+        }
+        sort(remaining.begin(),remaining.end());
+        for(int i=0; i<remaining.size(); i++){
+            if(additionalRocks < remaining[i]) return i;
+            else additionalRocks -= remaining[i];
+        }
+        return remaining.size();
+    }
+};
