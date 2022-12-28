@@ -1,0 +1,35 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* prenth = NULL;
+        int count = 0;
+        findNthHelper(&head, n, &count, &prenth);
+
+        if(prenth == NULL) head = head->next;
+        else prenth->next = prenth->next->next;
+        return head;
+    }
+
+    void findNthHelper(ListNode** currhead, int n, int* count, ListNode** prenth){
+        if((*currhead) == NULL || (*currhead)->next == NULL){
+            (*count)++;
+            return;
+        }
+        findNthHelper(&(*currhead)->next,n,count,prenth);
+        (*count)++;
+        if((*count) == n+1){
+            (*prenth) = (*currhead);
+        }
+        return;
+    }
+};
