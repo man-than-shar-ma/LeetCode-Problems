@@ -12,24 +12,47 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> result;
-        if(root == NULL)
-            return result;
-        queue<TreeNode*> que;
-        que.push(root);
-        while(!que.empty()){
-            vector<int> temp;
-            int queSize = que.size();
-            for(int i=0;i<queSize;i++){
-                temp.push_back(que.front()->val);
-                if(que.front()->left != NULL)
-                    que.push(que.front()->left);
-                if(que.front()->right != NULL)
-                    que.push(que.front()->right);
-                que.pop();
+        // vector<vector<int>> result;
+        // if(root == NULL)
+        //     return result;
+        // queue<TreeNode*> que;
+        // que.push(root);
+        // while(!que.empty()){
+        //     vector<int> temp;
+        //     int queSize = que.size();
+        //     for(int i=0;i<queSize;i++){
+        //         temp.push_back(que.front()->val);
+        //         if(que.front()->left != NULL)
+        //             que.push(que.front()->left);
+        //         if(que.front()->right != NULL)
+        //             que.push(que.front()->right);
+        //         que.pop();
+        //     }
+        //     result.push_back(temp);
+        // }
+        // return result;
+
+        vector<vector<int>> res;
+        queue<TreeNode*> q;
+        q.push(root);
+        int count = 1;
+        vector<int> tempVec;
+        while(!q.empty()){
+            int tempcount = 0;
+            for(int i=0; i<count; i++){
+                TreeNode* temp = q.front();
+                q.pop();
+                if(temp != NULL){
+                    tempVec.push_back(temp->val);
+                    q.push(temp->left);
+                    q.push(temp->right);
+                    tempcount += 2;
+                }
             }
-            result.push_back(temp);
+            if(!tempVec.empty()) res.push_back(tempVec);
+            tempVec.clear();
+            count = tempcount;     
         }
-        return result;
+        return res;
     }
 };
